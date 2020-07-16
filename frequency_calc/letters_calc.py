@@ -6,7 +6,7 @@ count = {}
 
 def count_letters(msg):
     if msg in ['', ' ']:
-        msg = 'qwerty'
+        msg = 'qwerty why are you so useful?'
     for character in msg.lower():
         count.setdefault(character, 0)
         count[character] = count[character] + 1
@@ -35,6 +35,14 @@ def save_to_csv_row():
             csv_writer.writerow(tmp_list)
 
 
+def save_to_csv_columns():
+    f_name = 'letters_columns.csv'
+    with open(f_name, 'w') as csv_file:
+        csv_writer = csv.writer(csv_file, delimiter=',')
+        csv_writer.writerow(count.keys())
+        csv_writer.writerow(count.values())
+
+
 if __name__ == '__main__':
     message = input('Insert a world or a phrase: ')
     count_letters(message)
@@ -44,3 +52,4 @@ if __name__ == '__main__':
     # TODO: Make a cake diagram from it and display it whit pandas!
 
     save_to_csv_row()
+    save_to_csv_columns()
