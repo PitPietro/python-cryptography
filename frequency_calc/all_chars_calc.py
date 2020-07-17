@@ -9,8 +9,24 @@ def count_letters(msg):
         msg = read_txt_file()
     for character in msg.lower():
         print(character)
-        if character in [',', ';', '.', ' ', ':', '-', '_']:
-            continue
+        if character == ',':
+            count.setdefault('comma', 0)
+            count['comma'] += 1
+        elif character == ';':
+            count.setdefault('semicolon', 0)
+            count['semicolon'] += 1
+        elif character == '.':
+            count.setdefault('dot', 0)
+            count['dot'] += 1
+        elif character == ':':
+            count.setdefault('colon', 0)
+            count['colon'] += 1
+        elif character == '"':
+            count.setdefault('quotes', 0)
+            count['quotes'] += 1
+        elif character == ' ':
+            count.setdefault('space', 0)
+            count['space'] += 1
         else:
             count.setdefault(character, 0)
             count[character] += 1
@@ -30,8 +46,8 @@ key_4, value_4
 """
 
 
-def save_letters_to_csv_row():
-    f_name = '../test_files/svg_files/only_letters_row.csv'
+def save_to_csv_row():
+    f_name = '../test_files/svg_files/letters_row.csv'
     with open(f_name, 'w') as csv_file:
         csv_writer = csv.writer(csv_file, delimiter=',')
         for key, value in count.items():
@@ -48,8 +64,8 @@ value_1, value_2, value_3, value_4
 """
 
 
-def save_letters_to_csv_columns():
-    f_name = '../test_files/svg_files/only_letters_columns.csv'
+def save_to_csv_columns():
+    f_name = '../test_files/svg_files/letters_columns.csv'
     with open(f_name, 'w') as csv_file:
         csv_writer = csv.writer(csv_file, delimiter=',')
         csv_writer.writerow(count.keys())
@@ -76,9 +92,5 @@ def read_txt_file():
 if __name__ == '__main__':
     message = input('Insert a world or a phrase: ')
     count_letters(message)
-    # TODO: replace the input whit the reading of a .txt file
-    #  (it allows the study of the frequency for a specific cryptography method)
-    # TODO: Make a cake diagram from it and display it whit pandas!
-
-    save_letters_to_csv_row()
-    save_letters_to_csv_columns()
+    save_to_csv_row()
+    save_to_csv_columns()
