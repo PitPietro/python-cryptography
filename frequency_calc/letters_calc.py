@@ -1,5 +1,6 @@
 import pprint
 import csv
+import matplotlib.pyplot as plt
 
 count = {}
 
@@ -9,7 +10,7 @@ def count_letters(msg):
         msg = read_txt_file()
     for character in msg.lower():
         print(character)
-        if character in [',', ';', '.', ' ', ':', '-', '_']:
+        if character in [',', ';', '.', ' ', ':', '-', '_', '!', '?', '^', '"']:
             continue
         else:
             count.setdefault(character, 0)
@@ -73,6 +74,20 @@ def read_txt_file():
     return my_data.read()
 
 
+def make_pie_chart():
+    plt.pie(
+        count.values(),
+        explode=None,
+        labels=count.keys(),
+        autopct='%1.4f%%',
+        shadow=True,
+        startangle=0
+    )
+
+    plt.axis('equal')
+    plt.show()
+
+
 if __name__ == '__main__':
     message = input('Insert a world or a phrase: ')
     count_letters(message)
@@ -82,3 +97,4 @@ if __name__ == '__main__':
 
     save_letters_to_csv_row()
     save_letters_to_csv_columns()
+    make_pie_chart()
