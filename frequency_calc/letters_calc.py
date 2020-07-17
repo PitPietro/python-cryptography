@@ -8,8 +8,25 @@ def count_letters(msg):
     if msg in ['', ' ']:
         msg = read_txt_file()
     for character in msg.lower():
-        count.setdefault(character, 0)
-        count[character] = count[character] + 1
+        print(character)
+        if character == ',':
+            count.setdefault('comma', 0)
+            count['comma'] += 1
+        elif character == ';':
+            count.setdefault('semicolon', 0)
+            count['semicolon'] += 1
+        elif character == '.':
+            count.setdefault('dot', 0)
+            count['dot'] += 1
+        elif character == ':':
+            count.setdefault('colon', 0)
+            count['colon'] += 1
+        elif character == ' ':
+            count.setdefault('space', 0)
+            count['space'] += 1
+        else:
+            count.setdefault(character, 0)
+            count[character] += 1
 
     final_dict = pprint.pformat(count)
     print(final_dict)
